@@ -135,7 +135,6 @@ The repository contains a minimal Electron wrapper that packages the static Next
 pnpm install
 pnpm build           # generates the static site in ./out
 pnpm electron:build  # produces dist/json-crack-<version>-portable.exe
-pnpm portable:start  # launches the packaged executable on Windows
 ```
 
 To iterate locally with Electron, run the web app and the Electron shell side by side:
@@ -147,8 +146,6 @@ pnpm electron:dev    # launches Electron against the dev server
 
 > **Note**
 > The Electron scripts require a Windows environment (or a cross-compilation setup) to generate the portable `.exe`.
-
-The repository also includes a convenience batch file (`tools/windows/start-jsoncrack-portable.cmd`). It forwards to the newest `*-portable.exe` in `dist/` so the portable app can be started directly without navigating to the output folder. The same lookup logic powers `pnpm portable:start` for command-line usage.
 
 ## Configuration
 

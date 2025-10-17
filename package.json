@@ -21,8 +21,7 @@
     "lint:fix": "eslint --fix src & prettier --write src",
     "analyze": "ANALYZE=true npm run build",
     "electron:dev": "cross-env NODE_ENV=development electron .",
-    "electron:build": "pnpm build && electron-builder --win portable",
-    "portable:start": "node ./scripts/portable/start.mjs"
+    "electron:build": "pnpm build && electron-builder --win portable"
   },
   "dependencies": {
     "@mantine/code-highlight": "^7.17.7",

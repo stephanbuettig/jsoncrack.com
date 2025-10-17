@@ -137,6 +137,13 @@ pnpm build           # generates the static site in ./out
 pnpm electron:build  # produces dist/json-crack-<version>-portable.exe
 ```
 
+After building the portable executable, you can launch it on Windows in one of two ways:
+
+- Double-click `scripts\portable\start-jsoncrack-portable.cmd`.
+- Run `pnpm portable:start`, which invokes the same launcher from the command line.
+
+Both options search `dist\` for the most recent `*-portable.exe` and start it. They require a Windows environment and a previously generated portable build (for example, from `pnpm electron:build`).
+
 To iterate locally with Electron, run the web app and the Electron shell side by side:
 
 ```sh

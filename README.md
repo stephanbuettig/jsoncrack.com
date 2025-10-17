@@ -127,6 +127,29 @@ docker compose up
 # Go to http://localhost:8888
 ```
 
+### Portable Windows build (Electron)
+
+The repository contains a minimal Electron wrapper that packages the static Next.js export into a portable Windows executable. To create the artifact:
+
+```sh
+pnpm install
+pnpm build           # generates the static site in ./out
+pnpm electron:build  # produces dist/json-crack-<version>-portable.exe
+pnpm portable:start  # launches the packaged executable on Windows
+```
+
+To iterate locally with Electron, run the web app and the Electron shell side by side:
+
+```sh
+pnpm dev             # start the Next.js dev server on http://localhost:3000
+pnpm electron:dev    # launches Electron against the dev server
+```
+
+> **Note**
+> The Electron scripts require a Windows environment (or a cross-compilation setup) to generate the portable `.exe`.
+
+The repository also includes a convenience batch file (`tools/windows/start-jsoncrack-portable.cmd`). It forwards to the newest `*-portable.exe` in `dist/` so the portable app can be started directly without navigating to the output folder. The same lookup logic powers `pnpm portable:start` for command-line usage.
+
 ## Configuration
 
 The supported node limit can be changed by editing the `NEXT_PUBLIC_NODE_LIMIT` value in the `.env` file at the project root.

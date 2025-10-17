@@ -21,7 +21,8 @@
     "lint:fix": "eslint --fix src & prettier --write src",
     "analyze": "ANALYZE=true npm run build",
     "electron:dev": "cross-env NODE_ENV=development electron .",
-    "electron:build": "pnpm build && electron-builder --win portable"
+    "electron:build": "pnpm build && electron-builder --win portable",
+    "portable:start": "node -e \"if (process.platform !== 'win32') { console.error('The portable launcher can only be used on Windows.'); process.exit(1); } const { spawnSync } = require('node:child_process'); const result = spawnSync('cmd', ['/c', 'scripts\\\\portable\\\\start-jsoncrack-portable.cmd'], { stdio: 'inherit', windowsHide: false }); if (result.error) { console.error(result.error.message); process.exit(1); } process.exit(result.status ?? 0);\""
   },
   "dependencies": {
     "@mantine/code-highlight": "^7.17.7",

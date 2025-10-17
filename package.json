@@ -2,6 +2,7 @@
   "name": "json-crack",
   "private": true,
   "version": "0.0.0",
+  "main": "electron/main.js",
   "author": {
     "name": "Aykut Saraç",
     "email": "aykutsarac0@gmail.com"
@@ -18,7 +19,9 @@
     "start": "next start",
     "lint": "tsc --project tsconfig.json && eslint src && prettier --check src",
     "lint:fix": "eslint --fix src & prettier --write src",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "electron:build": "pnpm build && electron-builder --win portable"
   },
   "dependencies": {
     "@mantine/code-highlight": "^7.17.7",
@@ -74,14 +77,42 @@
     "@types/react": "18.2.51",
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "electron": "^31.3.0",
+    "electron-builder": "^25.1.8",
     "eslint": "8.56.0",
     "eslint-config-next": "14.2.28",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-unused-imports": "^3.2.0",
     "prettier": "^3.5.3",
+    "cross-env": "^7.0.3",
     "ts-node": "^10.9.2",
     "typescript": "5.8.2"
+  },
+  "build": {
+    "appId": "com.jsoncrack.app",
+    "productName": "JSON Crack",
+    "directories": {
+      "output": "dist",
+      "buildResources": "electron/resources"
+    },
+    "files": [
+      "out/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "asar": false,
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "json-crack-${version}-portable.exe"
+    }
   },
   "engines": {
     "node": ">=18.x"
